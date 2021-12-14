@@ -2,22 +2,30 @@ import "./card.css"
 
 
 export default function Card(props) {
-    return <div className="col-lg-4 mt-5">
-        <div class="card">
-            <div class="card-body">
-        
-                <h6 class="card-titleTop">{props.title}</h6><br/>
-                <h5 class="card-title">{props.price}<sub className="sub">{props.month}</sub></h5><hr/>
-                <p id="users" class="card-text"> {props.user} </p>
-                <p class="card-text"> {props.storage} </p>
-                <p class="card-text"> {props.unlimitedPublicProject} </p>
-                <p class="card-text"> {props.community} </p>
-                <p class="card-text"> {props.unlimitedPrivateProject} </p>
-                <p class="card-text"> {props.deticatedPhoneSupport} </p>
-                <p class="card-text"> {props.freeSubdomain} </p>
-                <p class="card-text"> {props.monthlyStatusReports} </p>
-                <a href="#" class="btn btn-primary">BUY NOW</a>
-            </div>
+    return <div class="col-lg-4 mt-5">
+    <div class="card mb-5 mb-lg-0">
+      <div class="card-body">
+        <h5 class="card-title text-muted text-uppercase text-center">{props.data.plan}</h5>
+        <h6 class="card-price text-center">${props.data.price}<span class="period">{props.data.period}</span></h6>
+        <hr/>
+        <ul class="fa-ul">
+
+
+        {
+            props.data.features.map((obj) =>{
+
+                if(obj.enable){
+                    return <li><span class="fa-li"><i class="fas fa-check"></i></span>{obj.isStrong ? <strong>{obj.name}</strong> : obj.name}</li>
+                }else{
+                    return <li class="text-muted"><span class="fa-li"><i class="fas fa-times"></i></span>{obj.name}</li>
+                }            
+            })
+        }
+        </ul>
+        <div class="d-grid">
+          <a href="#" class="btn btn-primary text-uppercase">Button</a>
         </div>
+      </div>
     </div>
+  </div>
 }
